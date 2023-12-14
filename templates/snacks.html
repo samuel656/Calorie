@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Snacks</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+	
+    .image,
+    .information {
+      border: 2px solid ;
+      padding: 10px;
+      margin: 8px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body style="background-color:lightgreen;">
+<div class="container">
+ <center> <h1 style="background-color:powderblue;" class="jumbotron">Indian Snacks Calorie Prediction</h1></center>
+  <form class="form-horizontal" action="/submit6" method="post" enctype="multipart/form-data">
+    <div class="form-row">
+     <h1>Upload Your Image: &nbsp;</h1>
+      <div class="form-group col-md-6">          
+        <input type="file" class="form-control form-control-lg border-1" name="my_image" id="my_image">
+		</div>
+		<div class="form-group col-md-6"><center>
+        <button type="submit" class="btn btn-success btn-lg">Submit</button></center>
+		</div>
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" style="background-color:lightyellow;">
+      <div class="image" id="imageInformation"> 
+        {% if prediction %}
+		<center>
+        <h1 name="pred" id="pred" style="background-color:powderblue;" >Food Name:<b style="color:Magenta;"><i> {{prediction}} </i></b></h1>
+		<br>
+        <img src="{{ img_path }}" height="400px" width="400px">
+		</center>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-6" style="background-color:lightyellow;">
+      <div class="information" id="foodInformation" > 
+        {% if food_info %}
+        <h1 style="background-color:powderblue;"><center><b style="color:tomato;">Nutritional Information:</b></center></h1>
+		<br>
+        <table align="center"> 
+		<tr>
+		<td><strong>Food Name:</strong></td>
+		<td> {{ food_info.foodName }}</td>
+		</tr>
+		<tr>
+		<td><strong>Calories:</strong></td>
+		<td> {{ food_info.calories }}</td>
+		</tr>
+        <tr> 
+		<td><strong>Proteins:</strong></td>
+		<td>{{ food_info.proteins }}</td>
+		</tr>
+		<tr>
+		<td><strong>Fat Content:</strong></td>
+		<td>{{ food_info.fatContent }}</td>
+		</tr>
+		<tr>
+        <td><strong>Carbohydrates: &nbsp;</strong></td>
+		<td>{{ food_info.carbohydrates }}</td>
+		</tr>
+		<tr>
+        <td><strong>Vitamin A:</strong> </td>
+		<td>{{ food_info['vitamin A'] }}</td>
+		</tr>
+		<tr>
+        <td><strong>Vitamin C:</strong></td>
+		<td>{{ food_info['vitamin C'] }}</td>
+		</tr>
+		<tr>
+        <td><strong>Calcium:</strong></td>
+		<td>{{ food_info.calcium }}</td>
+		</tr>
+		<tr>
+        <td><strong>Iron:</strong> </td>
+		<td>{{ food_info.iron }}</td>
+		</tr>
+       </table>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Bootstrap JS and Popper.js scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
